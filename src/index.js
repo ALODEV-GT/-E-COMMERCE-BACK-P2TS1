@@ -5,6 +5,7 @@ const cors = require('cors');
 
 //Rutas
 const usuarioRoutes = require("./routes/usuario.routes")
+const autenticacionRoutes = require("./routes/autenticacion.routes")
 
 //configuracion express
 const app = express()
@@ -32,6 +33,7 @@ async function conexion() {
 conexion()
 
 app.use("/api/usuarios", usuarioRoutes)
+app.use("/api/autenticacion", autenticacionRoutes)
 
 //Puerto del servidor
 app.listen(puerto, () => { console.log("puerto: " + puerto); })

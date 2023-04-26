@@ -31,7 +31,7 @@ async function conexion() {
 
 conexion()
 
-app.use("/api", usuarioRoutes)
+app.use("/api/usuarios", usuarioRoutes)
 
 //Puerto del servidor
 app.listen(puerto, () => { console.log("puerto: " + puerto); })

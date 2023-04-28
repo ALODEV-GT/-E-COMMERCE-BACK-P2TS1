@@ -6,6 +6,8 @@ const cors = require('cors');
 //Rutas
 const usuarioRoutes = require("./routes/usuario.routes")
 const autenticacionRoutes = require("./routes/autenticacion.routes")
+const productoRoutes = require("./routes/producto.routes")
+const carritoRoutes = require("./routes/carrito.routes")
 
 //configuracion express
 const app = express()
@@ -34,6 +36,8 @@ conexion()
 
 app.use("/api/usuarios", usuarioRoutes)
 app.use("/api/autenticacion", autenticacionRoutes)
+app.use("/api/productos", productoRoutes)
+app.use("/api/carrito", carritoRoutes)
 
 //Puerto del servidor
 app.listen(puerto, () => { console.log("puerto: " + puerto); })

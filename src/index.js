@@ -9,6 +9,7 @@ const autenticacionRoutes = require("./routes/autenticacion.routes")
 const productoRoutes = require("./routes/producto.routes")
 const carritoRoutes = require("./routes/carrito.routes")
 const ordenRoutes = require("./routes/orden.routes")
+const fechaGlobalRoutes = require("./routes/fecha-global.routes")
 
 //configuracion express
 const app = express()
@@ -40,6 +41,7 @@ app.use("/api/autenticacion", autenticacionRoutes)
 app.use("/api/productos", productoRoutes)
 app.use("/api/carrito", carritoRoutes)
 app.use("/api/ordenes", ordenRoutes)
+app.use("/api/fecha-global", fechaGlobalRoutes)
 
 //Puerto del servidor
 app.listen(puerto, () => { console.log("puerto: " + puerto); })

@@ -30,14 +30,21 @@ const getPedidosPendientes = async (req, res) => {
 
 const entregarPedido = async (req, res) => {
   const { _id } = req.body;
-  console.log(req.body);
-  console.log(_id);
   const resp = await Orden.updateOne({ "_id": _id }, {
     $set: {
       estado: "entregado"
     }
   });
-  console.log(resp);
+  res.json(resp)
+}
+
+const cambiarFechaEntrega = async (req, res) => {
+  const { _id, fecha_entrega } = req.body;
+  const resp = await Orden.updateOne({ "_id": _id }, {
+    $set: {
+      fecha_entrega
+    }
+  });
   res.json(resp)
 }
 
@@ -45,6 +52,7 @@ module.exports = {
   getMisPedidosPendientes: getMisPedidosPendientes,
   getMisPedidosEntregados: getMisPedidosEntregados,
   getPedidosPendientes: getPedidosPendientes,
-  entregarPedido: entregarPedido
+  entregarPedido: entregarPedido,
+  cambiarFechaEntrega: cambiarFechaEntrega
 }
 

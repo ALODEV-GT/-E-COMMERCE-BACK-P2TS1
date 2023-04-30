@@ -10,4 +10,6 @@ router.get("/pedidos-pendientes", ordenController.getPedidosPendientes)
 
 router.put("/entregar-pedido", ordenController.entregarPedido)
 
+router.put("/cambiar-fecha-entrega", ordenController.cambiarFechaEntrega)
+
 module.exports = router;

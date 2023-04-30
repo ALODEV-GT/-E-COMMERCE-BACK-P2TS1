@@ -105,7 +105,6 @@ const editarProducto = async (req, res) => {
       solicitud
     }
   });
-  console.log("Se edito el producto: " + _id);
   res.json(resp)
 
 }

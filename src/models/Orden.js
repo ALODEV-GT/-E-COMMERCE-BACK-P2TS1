@@ -15,6 +15,8 @@ const ordenSchema = new Schema({
     precio: Number,
     categoria: String,
     stock: Number,
+    unidadesCompra: Number,
+    fechaCompra: Date,
     solicitud: {
       fecha_solicitud: Date,
       estado: String

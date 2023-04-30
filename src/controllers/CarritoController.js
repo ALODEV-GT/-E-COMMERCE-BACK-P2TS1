@@ -52,25 +52,36 @@ const comprar = async (req, res) => {
 
   nuevaOrden = await insertarOrden.save();
 
+  //Cambiamos estado producto
   let prods = productos;
   prods.forEach(p => {
     let _id = p._id;
     let unidades = p.unidadesCompra;
-    cambiarEstadoCompradoProducto(_id, unidades)
+    restarEnStock(_id, unidades)
   });
 
   res.json(true)
 }
 
-async function cambiarEstadoCompradoProducto(_id, unidades) {
+async function cambiarEstadoCompradoProducto(_id) {
   await Producto.updateOne({ "_id": _id }, {
     $set: {
       "solicitud.estado": "vendido",
     },
+  });
+}
+
+async function restarEnStock(_id, unidades) {
+  await Producto.updateOne({ "_id": _id }, {
     $inc: {
       stock: -unidades
     }
   });
+
+  const producto = await Producto.findOne({ "_id": _id })
+  if (producto.stock == 0) {
+    cambiarEstadoCompradoProducto(_id)
+  }
 }
 
 module.exports = {

@@ -10,6 +10,7 @@ const productoSchema = new Schema({
   precio: Number,
   categoria: String,
   stock: Number,
+  unidadesCompra: Number,
   solicitud: {
     fecha_solicitud: Date,
     estado: String

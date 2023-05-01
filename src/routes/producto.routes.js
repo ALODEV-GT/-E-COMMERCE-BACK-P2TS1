@@ -20,4 +20,11 @@ router.put("/autorizar", productoController.autorizarProducto)
 
 router.delete("/eliminar-producto/:id", productoController.eliminarProducto)
 
+router.get('/get-img-producto', productoController.getImgProducto)
+
+router.post('/guardar-imagen', productoController.upload.single('imagen'), function (req, res) {
+  const fileName = req.file.originalname;
+  res.json('/img/productos/' + fileName);
+});
+
 module.exports = router;

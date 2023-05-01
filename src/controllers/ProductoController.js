@@ -1,5 +1,6 @@
 const Producto = require("../models/Producto")
 const Orden = require("../models/Orden")
+const multer = require('multer');
 
 const getMisProductos = async (req, res) => {
   const { nombreUsuario } = req.params;
@@ -109,6 +110,23 @@ const editarProducto = async (req, res) => {
 
 }
 
+const getImgProducto = async (req, res) => {
+  res.set('Content-Type', 'image/jpg');
+  const url = req.query.url
+  res.sendFile(__dirname+url);
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'src/controllers/img/productos');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+
+const upload = multer({ storage: storage })
+
 
 module.exports = {
   agregarProducto: agregarProducto,
@@ -119,5 +137,7 @@ module.exports = {
   getProductosRechazados: getProductosRechazados,
   eliminarProducto: eliminarProducto,
   editarProducto: editarProducto,
-  getMisProductosVendidos: getMisProductosVendidos
+  getMisProductosVendidos: getMisProductosVendidos,
+  upload: upload,
+  getImgProducto: getImgProducto
 }

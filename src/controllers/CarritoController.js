@@ -40,7 +40,6 @@ const tarjetasUsuario = async (req, res) => {
 
 const comprar = async (req, res) => {
   const { comprador_usuario, fecha_pedido, fecha_entrega, estado, productos, ganancia } = req.body
-
   const insertarOrden = new Orden({
     comprador_usuario,
     fecha_pedido,

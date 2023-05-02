@@ -17,6 +17,10 @@ const ordenSchema = new Schema({
     stock: Number,
     unidadesCompra: Number,
     fechaCompra: Date,
+    ganancia: {
+      ganancia_usuario: Number,
+      ganancia_empresa: Number
+    },
     solicitud: {
       fecha_solicitud: Date,
       estado: String

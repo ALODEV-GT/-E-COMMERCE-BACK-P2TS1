@@ -11,6 +11,12 @@ const getUsuario = async (req, res) => {
   res.json(usuario)
 }
 
+const getPassUsuario = async (req, res) => {
+  const { nombreUsuario } = req.params;
+  const usuario = await Usuario.findOne({ usuario: nombreUsuario })
+  res.json(usuario.contrasena)
+}
+
 const agregarUsuario = async (req, res) => {
   const { nombre, usuario, contrasena, rol } = req.body;
   const insertarUsuario = new Usuario({
@@ -56,5 +62,6 @@ module.exports = {
   getUsuario: getUsuario,
   agregarUsuario: agregarUsuario,
   eliminarUsuario: eliminarUsuario,
-  actualizarUsuario: actualizarUsuario
+  actualizarUsuario: actualizarUsuario,
+  getPassUsuario: getPassUsuario
 }

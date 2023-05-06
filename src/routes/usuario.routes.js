@@ -6,6 +6,8 @@ router.get("/lista", userController.getUsuarios)
 
 router.get("/usuario/:nombreUsuario", userController.getUsuario)
 
+router.get("/pass/:nombreUsuario", userController.getPassUsuario)
+
 router.post("/agregar", userController.agregarUsuario)
 
 router.delete("/eliminar/:usuario", userController.eliminarUsuario)

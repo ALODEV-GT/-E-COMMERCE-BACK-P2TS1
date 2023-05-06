@@ -35,11 +35,25 @@ const getMisProductosVendidos = async (req, res) => {
 }
 
 const getProductosVenta = async (req, res) => {
-  const productos = await Producto.find(
-    {
-      "solicitud.estado": "aceptado"
-    });
-  res.json(productos)
+  const { clave } = req.query;
+
+  if (clave) {
+    const productos = await Producto.find(
+      {
+        $and: [
+          { nombre: { $regex: new RegExp('^' + clave, "i") } },
+          { "solicitud.estado": "aceptado" }
+        ]
+      });
+    res.json(productos)
+  } else {
+    const productos = await Producto.find(
+      {
+        "solicitud.estado": "aceptado"
+      });
+    res.json(productos)
+  }
+
 }
 
 const getProductosAutorizar = async (req, res) => {
@@ -113,7 +127,7 @@ const editarProducto = async (req, res) => {
 const getImgProducto = async (req, res) => {
   res.set('Content-Type', 'image/jpg');
   const url = req.query.url
-  res.sendFile(__dirname+url);
+  res.sendFile(__dirname + url);
 }
 
 const storage = multer.diskStorage({
